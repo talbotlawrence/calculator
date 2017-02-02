@@ -1,29 +1,49 @@
 "use strict";
 
+//Listeners and Logic
 var addButton = document.getElementById("add");
-addButton.addEventListener("click", addNumbers);
-
-var subtractButton = document.getElementById("subtract");
-subtractButton.addEventListener("click", subtractsNumbers);
-
-var multiplyButton = document.getElementById("multiply");
-multiplyButton.addEventListener("click", multiplyNumbers);
-
-var divideButton = document.getElementById("divide");
-divideButton.addEventListener("click", divideNumbers);
-
-
-(function getUserInput() {			//I really want this to be an IIFE!!!
+addButton.addEventListener("click", function() {
 	var number1 = document.getElementById("number1").value;
 	var number2 = document.getElementById("number2").value;
-	return hey;
-})();
+	var myAddition = returnValue(parseInt(number1), parseInt(number2), addNumbers);
+	dumpToHtml(myAddition);
+});
 
+var subtractButton = document.getElementById("subtract");
+subtractButton.addEventListener("click", function() {
+	var number1 = document.getElementById("number1").value;		//this is redundant and ugly!!!
+	var number2 = document.getElementById("number2").value;
+	var mySubtraction = returnValue(parseInt(number1), parseInt(number2), subtractNumbers);
+	dumpToHtml(mySubtraction);
+});
+
+var multiplyButton = document.getElementById("multiply");
+multiplyButton.addEventListener("click", function() {
+	var number1 = document.getElementById("number1").value;		//this is redundant and ugly!!!
+	var number2 = document.getElementById("number2").value;
+	var myMultiplication = returnValue(parseInt(number1), parseInt(number2), multiplyNumbers);
+	dumpToHtml(myMultiplication);
+});
+
+var divideButton = document.getElementById("divide");
+divideButton.addEventListener("click", function() {
+	var number1 = document.getElementById("number1").value;		//this is redundant and ugly!!!
+	var number2 = document.getElementById("number2").value;
+	var myDivision = returnValue(parseInt(number1), parseInt(number2), divideNumbers);
+	dumpToHtml(myDivision);
+});
+
+//the Heavy lifters (functions)
+function dumpToHtml(code){
+	var output = document.getElementById("showMe");
+	output.innerHTML = `<h2>${code}</h2>`;
+};	
+	
 function addNumbers(one, two){
 	return one + two;
 };
 
-function subtractsNumbers(one, two){
+function subtractNumbers(one, two){
 	return one - two;
 };
 
@@ -36,19 +56,6 @@ function divideNumbers(one, two){
 };
 
  function returnValue(first, second, myFunction){
- 	var doTheWork = myFunction(parseInt(first), parseInt(second));
- 	var output = document.getElementById("showMe");
+ 	var doTheWork = myFunction(first, second);
  	return doTheWork;
  };
-
- var addPlease = returnValue(number1, number2, add);
- output.innerHTML = `<h2>${addPlease}</h2>`;
-
- var subtractPlease = returnValue(number1, number2, subtract);
- output.innerHTML = `<h2>${subtractPlease}</h2>`;
-
- var multiplyPlease = returnValue(number1, number2, multiply);
- output.innerHTML = `<h2>${multiplyPlease}</h2>`;
-
- var dividePlease = returnValue(number1, number2, divide);
- output.innerHTML = `<h2>${dividePlease}</h2>`;
